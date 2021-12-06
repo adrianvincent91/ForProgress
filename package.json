@@ -16,12 +16,16 @@
     "homepage": "https://github.com/adrianvincent91/ForProgress",
     "keywords": [
         "progress",
+        "bar",
+        "progress bar",
         "progressbar",
         "spinner",
         "loading",
         "web",
         "ajax",
-        "SPA"
+        "SPA",
+        "typescript",
+        "TS"
     ],
     "devDependencies": {
         "css-loader": "^6.5.1",
