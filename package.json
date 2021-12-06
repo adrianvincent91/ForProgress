@@ -1,0 +1,35 @@
+{
+    "name": "forprogress",
+    "version": "1.0.0",
+    "description": "A simple but flexible progress bar for single-page applications, written in TypeScript",
+    "main": "./dist/ForProgress.js",
+    "types": "./dist/ForProgress.d.ts",
+    "scripts": {
+        "build": "npx webpack"
+    },
+    "author": "Adrian Vincent <adrian.gavin.vincent@gmail.com> (https://twitter.com/adrianvincent)",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/adrianvincent91/ForProgress.git"
+    },
+    "homepage": "https://github.com/adrianvincent91/ForProgress",
+    "keywords": [
+        "progress",
+        "progressbar",
+        "spinner",
+        "loading",
+        "web",
+        "ajax",
+        "SPA"
+    ],
+    "devDependencies": {
+        "css-loader": "^6.5.1",
+        "sass": "^1.44.0",
+        "sass-loader": "^12.3.0",
+        "ts-loader": "^9.2.6",
+        "typescipt": "^1.0.0",
+        "webpack": "^5.64.4",
+        "webpack-cli": "^4.9.1"
+    }
+}
