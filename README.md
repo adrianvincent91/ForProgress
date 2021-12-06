@@ -57,7 +57,7 @@ bar.resume(); // Resume auto incrementation
 ```
 
 ## Configuration
-You can change the default values during class initialisation.
+You can change the default settings during class initialisation.
 
 
 ### `color` (default: 'red')
