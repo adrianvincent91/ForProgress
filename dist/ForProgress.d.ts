@@ -2,13 +2,18 @@ interface Settings {
     color?: string | string[] & {
         0: string;
     };
-    autoIncrement?: boolean;
+    backgroundColor?: string;
+    autoIncrementEnabled?: boolean;
     autoIncrementSpeed?: number;
     autoIncrementMaxPercent?: number;
-    autoIncrementFirstPercent?: number;
+    autoIncrementInitialPercent?: number;
     height?: number;
     appendTo?: string;
     useCustomCss?: boolean;
+    spinnerEnabled?: boolean;
+    spinnerColor?: string;
+    spinnerSize?: number;
+    spinnerSpeed?: number;
 }
 declare class ForProgress {
     private settings;
@@ -20,7 +25,6 @@ declare class ForProgress {
     constructor(customSettings?: Settings);
     /**
      * Start the progress bar. Restarts if already running.
-     * @param autoIncrement Enable or disable auto increment. Overrides the settings autoIncrement property.
      */
     start(): this;
     /**
@@ -58,5 +62,6 @@ declare class ForProgress {
     private updateSettings;
     private clearCurrentAutoIncrementInterval;
     private appendCss;
+    private createElementWithClassName;
 }
 export = ForProgress;

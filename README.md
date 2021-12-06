@@ -5,7 +5,7 @@
 ## Install
 
 ```bash
-npm i forprogress
+$ npm i forprogress
 ```
 CommonJS
 ```javascript
@@ -57,63 +57,100 @@ bar.resume(); // Resume auto incrementation
 ```
 
 ## Configuration
-Default values are show in the examples:
+You can change the default values during class initialisation.
 
 
-### `color`
+### `color` (default: 'red')
 
 Set the color of the progress bar, using any valid CSS color data type. For a gradient, use an array of colors. 
 ```javascript
-const bar = new ForProgress({ color: 'red' });
+const bar = new ForProgress({ color: 'red' }); // Single colour
+
+const bar = new ForProgress({ color: ['green', '#0000FF', 'purple'] }); // Gradient
 ```
 
-### `autoIncrement`
+### `backgroundColor` (default: 'transparent')
 
-Auto increment the progress bar once started.
+Set the background color of the progress bar, using any valid CSS color data type. 
 ```javascript
-const bar = new ForProgress({ autoIncrement: true });
+const bar = new ForProgress({ backgroundColor: 'transparent' });
 ```
 
-### `autoIncrementSpeed`
+### `autoIncrementEnabled` (default: true)
 
-The speed, in milliseconds, between auto incrementation. Lower is faster.
+Enable or disable progress bar auto incrementation.
+```javascript
+const bar = new ForProgress({ autoIncrementEnabled: true });
+```
+
+### `autoIncrementSpeed` (default: 100)
+
+The interval speed between auto incrementations, in milliseconds. Lower is faster.
 ```javascript
 const bar = new ForProgress({ autoIncrementSpeed: 100 });
 ```
 
-### `autoIncrementMaxPercent`
+### `autoIncrementMaxPercent` (default: 1)
 
-The maximum percent increase between auto incrementation. A random number will be chosen between 0.1 and `autoIncrementMaxPercent` for each incrementation.
+The maximum progress percent increase between auto incrementation intervals. A random number will be chosen between 0.1 and `autoIncrementMaxPercent` for each interval.
 ```javascript
 const bar = new ForProgress({ autoIncrementMaxPercent: 1 });
 ```
 
-### `autoIncrementFirstPercent`
+### `autoIncrementInitialPercent` (default: 20)
 
-The starting percent for the progress bar when `autoIncrement` is true.
+Set the initial progress percent. Only applies when `autoIncrementEnabled` is true.
 ```javascript
-const bar = new ForProgress({ autoIncrementFirstPercent: 10 });
+const bar = new ForProgress({ autoIncrementInitialPercent: 20 });
 ```
 
-### `height`
+### `height` (default: 3)
 
 The height of the progress bar in px.
 ```javascript
 const bar = new ForProgress({ height: 3 });
 ```
 
-### `appendTo`
+### `appendTo` (default: 'body')
 
 The CSS query selector to append the progress bar to.
 ```javascript
 const bar = new ForProgress({ appendTo: 'body' });
 ```
 
-### `useCustomCss`
+### `useCustomCss` (default: false)
 
 Set to true to disable automatic stylesheet injection and use your own style sheet. See [ForProgress.scss](./src/ForProgress.scss) for reference.
 ```javascript
 const bar = new ForProgress({ useCustomCss: false });
+```
+
+### `spinnerEnabled` (default: true)
+
+Enable or disable the spinner.
+```javascript
+const bar = new ForProgress({ spinnerEnabled: true });
+```
+
+### `spinnerColor` (default: 'grey')
+
+The color of the spinner, using any valid CSS color data type
+```javascript
+const bar = new ForProgress({ spinnerColor: 'grey' });
+```
+
+### `spinnerSize` (default: 20)
+
+The size of the spinner in px.
+```javascript
+const bar = new ForProgress({ spinnerSize: 20 });
+```
+
+### `spinnerSpeed` (default: 750)
+
+The speed at which the spinner completes 360 degrees, in milliseconds. Lower is faster.
+```javascript
+const bar = new ForProgress({ spinnerSpeed: 750 });
 ```
 
 © [Adrian Vincent](https://twitter.com/adrianvincent) | [MIT License](LICENSE.md)

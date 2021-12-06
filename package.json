@@ -1,6 +1,6 @@
 {
     "name": "forprogress",
-    "version": "1.0.1",
+    "version": "2.0.0",
     "description": "A simple but flexible progress bar for single-page applications, written in TypeScript",
     "main": "./dist/ForProgress.js",
     "types": "./dist/ForProgress.d.ts",

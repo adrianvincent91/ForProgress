@@ -2,13 +2,18 @@ import css from './ForProgress.scss';
 
 interface Settings {
     color?: string | string[] & { 0: string };
-    autoIncrement?: boolean;
+    backgroundColor?: string;
+    autoIncrementEnabled?: boolean;
     autoIncrementSpeed?: number;
     autoIncrementMaxPercent?: number;
-    autoIncrementFirstPercent?: number;
+    autoIncrementInitialPercent?: number;
     height?: number;
     appendTo?: string;
     useCustomCss?: boolean;
+    spinnerEnabled? : boolean;
+    spinnerColor? : string;
+    spinnerSize? : number,
+    spinnerSpeed? : number
 }
 
 class ForProgress {
@@ -24,13 +29,18 @@ class ForProgress {
 
         this.settings = {
             color: 'red',
-            autoIncrement: true,
+            backgroundColor: 'transparent',
+            autoIncrementEnabled: true,
             autoIncrementSpeed: 100,
             autoIncrementMaxPercent: 1,
-            autoIncrementFirstPercent: 10,
+            autoIncrementInitialPercent: 20,
             height: 3,
             appendTo: 'body',
-            useCustomCss: false
+            useCustomCss: false,
+            spinnerEnabled: true,
+            spinnerColor: 'grey',
+            spinnerSize: 20,
+            spinnerSpeed: 750
         };
 
         this.updateSettings(customSettings);
@@ -45,7 +55,6 @@ class ForProgress {
 
     /** 
      * Start the progress bar. Restarts if already running.
-     * @param autoIncrement Enable or disable auto increment. Overrides the settings autoIncrement property.
      */
     start(): this {
 
@@ -151,7 +160,7 @@ class ForProgress {
         this.clearCurrentAutoIncrementInterval();
         this.isRunning = true;
         this.currentAutoIncrementInterval = false;
-        this.autoIncrementIsPaused = !this.settings.autoIncrement;
+        this.autoIncrementIsPaused = !this.settings.autoIncrementEnabled;
 
     }
 
@@ -168,21 +177,27 @@ class ForProgress {
 
     private createForProgressContainer(): HTMLElement {
 
-        let forProgressContainer = document.createElement('div');
-        forProgressContainer.className = 'forProgressContainer';
 
-        let bar = document.createElement('div');
-        bar.className = 'bar';
+        let forProgressContainer = this.createElementWithClassName('div', 'forProgressContainer')
+        let bar = this.createElementWithClassName('div', 'bar')
+        let tip = this.createElementWithClassName('div', 'tip')
+        let spinner = this.createElementWithClassName('div', 'spinner')
 
-        let tip = document.createElement('div');
-        tip.className = 'tip';
+        forProgressContainer.style.background = this.settings.backgroundColor;
+        bar.style.background = this.gradientGenerator();
+        bar.style.height = `${this.settings.height}px`;
+        tip.style.background = this.colorArray[this.colorArray.length - 1];
+        spinner.style.borderTop = `2px solid ${this.settings.spinnerColor}`;
+        spinner.style.height = `${this.settings.spinnerSize}px`;
+        spinner.style.width = `${this.settings.spinnerSize}px`;
+        spinner.style.animation = `spin ${this.settings.spinnerSpeed}ms linear infinite`
+
+
+        // animation: spin 750ms linear infinite;
 
         bar.append(tip);
         forProgressContainer.append(bar);
-
-        bar.style.background = this.gradientGenerator();
-        tip.style.background = this.colorArray[this.colorArray.length - 1];
-        bar.style.height = `${this.settings.height}px`;
+        if (this.settings.spinnerEnabled) forProgressContainer.append(spinner);
 
         return forProgressContainer;
 
@@ -234,15 +249,15 @@ class ForProgress {
 
     private startIncrement() {
 
-        if (this.currentPercent === 0 && !this.autoIncrementIsPaused) this.setPercent(this.settings.autoIncrementFirstPercent);
+        if (this.currentPercent === 0 && !this.autoIncrementIsPaused) this.setPercent(this.settings.autoIncrementInitialPercent);
 
         this.currentAutoIncrementInterval = setInterval(() => {
 
             if (this.autoIncrementIsPaused) return;
 
-            if (this.currentPercent === 0 && this.settings.autoIncrementFirstPercent !== 0) {
+            if (this.currentPercent === 0 && this.settings.autoIncrementInitialPercent !== 0) {
 
-                this.setPercent(this.settings.autoIncrementFirstPercent)
+                this.setPercent(this.settings.autoIncrementInitialPercent)
                 return;
 
             }
@@ -282,6 +297,14 @@ class ForProgress {
         let styleElement = document.createElement('style');
         styleElement.textContent = css;
         document.head.append(styleElement);
+
+    }
+
+    private createElementWithClassName(elementType: string, className: string): HTMLElement {
+
+        let element = document.createElement(elementType);
+        element.className = className;
+        return element;
 
     }
 
