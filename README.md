@@ -1,6 +1,6 @@
 # ForProgress
 
-> A simple but flexible progress bar for single-page applications, written in TypeScript. Used at [CompareDial](https://www.comparedial.com/).
+> A simple but flexible progress bar for single-page applications, written in TypeScript. Used at [CompareDial](https://www.comparedial.com/)
 
 ## Install
 
@@ -134,7 +134,7 @@ const bar = new ForProgress({ spinnerEnabled: true });
 
 ### `spinnerColor` (default: 'grey')
 
-The color of the spinner, using any valid CSS color data type
+The color of the spinner, using any valid CSS color data type.
 ```javascript
 const bar = new ForProgress({ spinnerColor: 'grey' });
 ```
