@@ -177,7 +177,6 @@ class ForProgress {
 
     private createForProgressContainer(): HTMLElement {
 
-
         let forProgressContainer = this.createElementWithClassName('div', 'forProgressContainer')
         let bar = this.createElementWithClassName('div', 'bar')
         let tip = this.createElementWithClassName('div', 'tip')
@@ -191,9 +190,6 @@ class ForProgress {
         spinner.style.height = `${this.settings.spinnerSize}px`;
         spinner.style.width = `${this.settings.spinnerSize}px`;
         spinner.style.animation = `spin ${this.settings.spinnerSpeed}ms linear infinite`
-
-
-        // animation: spin 750ms linear infinite;
 
         bar.append(tip);
         forProgressContainer.append(bar);
