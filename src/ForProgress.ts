@@ -53,15 +53,15 @@ class ForProgress {
 
         let { forProgressContainer, bar } = this.getForProgressElements();
 
-        forProgressContainer.classList.add('disableTransition');
-        bar.classList.add('disableTransition');
+        forProgressContainer.classList.add('disableTransitionForProgress');
+        bar.classList.add('disableTransitionForProgress');
 
         this.setPercent(0);
         forProgressContainer.style.opacity = '1';
 
         forProgressContainer.offsetHeight;
-        forProgressContainer.classList.remove('disableTransition');
-        bar.classList.remove('disableTransition');
+        forProgressContainer.classList.remove('disableTransitionForProgress');
+        bar.classList.remove('disableTransitionForProgress');
 
         this.startIncrement();
 

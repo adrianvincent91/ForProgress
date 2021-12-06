@@ -21,9 +21,8 @@ div.forProgressContainer {
             filter: blur(5px);
         }
     }
+}
 
-    .disableTransition {
-        transition: none !important;
-    }
-    
+.disableTransitionForProgress {
+    transition: none !important;
 }

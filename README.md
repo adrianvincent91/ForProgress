@@ -19,7 +19,7 @@ import ForProgress from 'ForProgress';
 
 HTML
 ```html
-<script src="forprogress.js"></script>
+<script src="https://unpkg.com/forprogress@1.0.1"></script>
 ```
 
 ## Usage
