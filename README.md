@@ -64,7 +64,7 @@ You can change the default values during class initialisation.
 
 Set the color of the progress bar, using any valid CSS color data type. For a gradient, use an array of colors. 
 ```javascript
-const bar = new ForProgress({ color: 'red' }); // Single colour
+const bar = new ForProgress({ color: 'red' }); // Single color
 
 const bar = new ForProgress({ color: ['green', '#0000FF', 'purple'] }); // Gradient
 ```
