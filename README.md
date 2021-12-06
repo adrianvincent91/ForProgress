@@ -120,7 +120,7 @@ const bar = new ForProgress({ appendTo: 'body' });
 
 ### `useCustomCss` (default: false)
 
-Set to true to disable automatic stylesheet injection and use your own style sheet. See [ForProgress.scss](./src/ForProgress.scss) for reference.
+Set to true to disable automatic style sheet injection and use your own style sheet. See [ForProgress.scss](./src/ForProgress.scss) for reference.
 ```javascript
 const bar = new ForProgress({ useCustomCss: false });
 ```
