@@ -10,10 +10,10 @@ interface Settings {
     height?: number;
     appendTo?: string;
     useCustomCss?: boolean;
-    spinnerEnabled? : boolean;
-    spinnerColor? : string;
-    spinnerSize? : number,
-    spinnerSpeed? : number
+    spinnerEnabled?: boolean;
+    spinnerColor?: string;
+    spinnerSize?: number,
+    spinnerSpeed?: number
 }
 
 class ForProgress {
@@ -95,7 +95,7 @@ class ForProgress {
     /**
      * Add to the current pecent of the progress bar. Use {@link getPercent} to get the current percent value.
      */
-    addPercent(percent: number) {
+    addPercent(percent: number): this {
 
         if (!this.isRunning) this.start();
 
