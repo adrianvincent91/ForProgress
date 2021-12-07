@@ -57,7 +57,7 @@ bar.resume(); // Resume auto incrementation
 ```
 
 ## Configuration
-You can change the default settings during class initialisation.
+You can change the default settings by passing an object at class initialisation.
 
 
 ### `color` (default: 'red')
@@ -120,7 +120,10 @@ const bar = new ForProgress({ appendTo: 'body' });
 
 ### `useCustomCss` (default: false)
 
-Set to true to disable automatic style sheet injection and use your own style sheet. See [ForProgress.scss](./src/ForProgress.scss) for reference.
+Set to true to disable automatic style sheet injection, allowing you to use your own external style sheet. Copy [ForProgress.scss](./src/ForProgress.scss) as a reference.
+
+If true, default and custom settings realted to styling will be ignored and not applied to elements. Therefore, you must uncomment these properties in [ForProgress.scss](./src/ForProgress.scss) and change them to your liking.
+
 ```javascript
 const bar = new ForProgress({ useCustomCss: false });
 ```

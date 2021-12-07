@@ -182,14 +182,18 @@ class ForProgress {
         let tip = this.createElementWithClassName('div', 'tip')
         let spinner = this.createElementWithClassName('div', 'spinner')
 
-        forProgressContainer.style.background = this.settings.backgroundColor;
-        bar.style.background = this.gradientGenerator();
-        bar.style.height = `${this.settings.height}px`;
-        tip.style.background = this.colorArray[this.colorArray.length - 1];
-        spinner.style.borderTop = `2px solid ${this.settings.spinnerColor}`;
-        spinner.style.height = `${this.settings.spinnerSize}px`;
-        spinner.style.width = `${this.settings.spinnerSize}px`;
-        spinner.style.animation = `spin ${this.settings.spinnerSpeed}ms linear infinite`
+        if (!this.settings.useCustomCss) {
+
+            forProgressContainer.style.background = this.settings.backgroundColor;
+            bar.style.background = this.gradientGenerator();
+            bar.style.height = `${this.settings.height}px`;
+            tip.style.background = this.colorArray[this.colorArray.length - 1];
+            spinner.style.borderTop = `2px solid ${this.settings.spinnerColor}`;
+            spinner.style.height = `${this.settings.spinnerSize}px`;
+            spinner.style.width = `${this.settings.spinnerSize}px`;
+            spinner.style.animation = `spin ${this.settings.spinnerSpeed}ms linear infinite`
+
+        }
 
         bar.append(tip);
         forProgressContainer.append(bar);
