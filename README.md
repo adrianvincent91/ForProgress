@@ -122,7 +122,7 @@ const bar = new ForProgress({ appendTo: 'body' });
 
 Set to true to disable automatic style sheet injection, allowing you to use your own external style sheet. Copy [ForProgress.scss](./src/ForProgress.scss) as a reference.
 
-If true, default and custom settings realted to styling will be ignored and not applied to elements. Therefore, you must uncomment these properties in [ForProgress.scss](./src/ForProgress.scss) and change them to your liking.
+If true, default and custom settings realted to styling will be ignored and not applied to elements. Therefore, you must uncomment the commented properties in your copy of [ForProgress.scss](./src/ForProgress.scss) and change them to your liking.
 
 ```javascript
 const bar = new ForProgress({ useCustomCss: false });
