@@ -40,7 +40,7 @@ declare class ForProgress {
     private createForProgressContainer;
     private gradientGenerator;
     private getcolorArray;
-    private getForProgressElements;
+    private appendForProgressElements;
     private startIncrement;
     private getRandomPercent;
     private updateSettings;

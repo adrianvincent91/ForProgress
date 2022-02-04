@@ -45,7 +45,7 @@ class ForProgress {
 
         this.reset();
 
-        let { forProgressContainer, bar } = this.getForProgressElements();
+        let { forProgressContainer, bar } = this.appendForProgressElements();
 
         forProgressContainer.classList.add('disableTransitionForProgress');
         bar.classList.add('disableTransitionForProgress');
@@ -107,14 +107,35 @@ class ForProgress {
      */
     done(): this {
 
-        if (!this.isRunning) return this;
+        const forProgressContainer: HTMLElement | null = document.querySelector('div.forProgressContainer');
 
-        let { forProgressContainer } = this.getForProgressElements();
+        if (!this.isRunning || !forProgressContainer) return this;
+
         this.clearCurrentAutoIncrementInterval();
         this.setPercent(100);
         forProgressContainer.style.opacity = '0';
 
         this.isRunning = false;
+
+        forProgressContainer.addEventListener('transitionend', transitionEnd);
+
+        function transitionEnd(event: Event) {
+
+            if (!forProgressContainer) return;
+
+            const element = event.target as HTMLElement;
+            if (element.className !== 'forProgressContainer') return;
+
+            try {
+
+                forProgressContainer.remove();
+                forProgressContainer.removeEventListener('transitionend', transitionEnd);
+
+            } catch (e) {
+
+            }
+
+        }
 
         return this;
 
@@ -151,7 +172,8 @@ class ForProgress {
 
     private changeBarProgress(percent: number) {
 
-        let { bar } = this.getForProgressElements();
+        const bar: HTMLElement | null = document.querySelector('div.forProgressContainer div.bar');
+        if (!bar) return;
 
         let translatePercent = -100 + percent;
         bar.style.transform = `translate3d(${translatePercent}%, 0px, 0px)`;
@@ -213,18 +235,15 @@ class ForProgress {
 
     }
 
-    private getForProgressElements(): { forProgressContainer: HTMLElement, bar: HTMLElement } {
+    private appendForProgressElements(): { forProgressContainer: HTMLElement, bar: HTMLElement } {
 
         let forProgressContainer: HTMLElement | null = document.querySelector('div.forProgressContainer');
+        if (forProgressContainer) forProgressContainer.remove();
 
-        if (!forProgressContainer) {
-
-            forProgressContainer = this.createForProgressContainer();
-            let appendToElement: HTMLElement | null = document.querySelector(this.settings.appendTo);
-            if (!appendToElement) throw `Cannot append to '${this.settings.appendTo}' as it does not exist in document`;
-            appendToElement.append(forProgressContainer);
-
-        }
+        forProgressContainer = this.createForProgressContainer();
+        let appendToElement: HTMLElement | null = document.querySelector(this.settings.appendTo);
+        if (!appendToElement) throw `Cannot append to '${this.settings.appendTo}' as it does not exist in document`;
+        appendToElement.append(forProgressContainer);
 
         let bar = forProgressContainer.querySelector('div.bar') as HTMLElement;
 
