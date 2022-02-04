@@ -45,7 +45,7 @@ class ForProgress {
 
         this.reset();
 
-        let { forProgressContainer, bar } = this.appendForProgressElements();
+        const { forProgressContainer, bar } = this.appendForProgressElements();
 
         forProgressContainer.classList.add('disableTransitionForProgress');
         bar.classList.add('disableTransitionForProgress');
@@ -175,7 +175,7 @@ class ForProgress {
         const bar: HTMLElement | null = document.querySelector('div.forProgressContainer div.bar');
         if (!bar) return;
 
-        let translatePercent = -100 + percent;
+        const translatePercent = -100 + percent;
         bar.style.transform = `translate3d(${translatePercent}%, 0px, 0px)`;
 
         this.currentPercent = percent;
@@ -184,10 +184,10 @@ class ForProgress {
 
     private createForProgressContainer(): HTMLElement {
 
-        let forProgressContainer = this.createElementWithClassName('div', 'forProgressContainer')
-        let bar = this.createElementWithClassName('div', 'bar')
-        let tip = this.createElementWithClassName('div', 'tip')
-        let spinner = this.createElementWithClassName('div', 'spinner')
+        const forProgressContainer = this.createElementWithClassName('div', 'forProgressContainer')
+        const bar = this.createElementWithClassName('div', 'bar')
+        const tip = this.createElementWithClassName('div', 'tip')
+        const spinner = this.createElementWithClassName('div', 'spinner')
 
         if (!this.settings.useCustomCss) {
 
@@ -212,10 +212,10 @@ class ForProgress {
 
     private gradientGenerator(): string {
 
-        let colorPosString = this.colorArray
+        const colorPosString = this.colorArray
             .map((color, i) => {
 
-                let gradientPos = ((100 / (this.colorArray.length - 1)) * i).toFixed(2);
+                const gradientPos = ((100 / (this.colorArray.length - 1)) * i).toFixed(2);
                 return `${color} ${gradientPos}%`;
 
             })
@@ -227,7 +227,7 @@ class ForProgress {
 
     private getcolorArray(): string[] {
 
-        let color = this.settings.color;
+        const color = this.settings.color;
 
         if (typeof color === 'string') return [color, color];
         if (color.length === 1) return [color[0], color[0]]
@@ -241,11 +241,11 @@ class ForProgress {
         if (forProgressContainer) forProgressContainer.remove();
 
         forProgressContainer = this.createForProgressContainer();
-        let appendToElement: HTMLElement | null = document.querySelector(this.settings.appendTo);
+        const appendToElement: HTMLElement | null = document.querySelector(this.settings.appendTo);
         if (!appendToElement) throw `Cannot append to '${this.settings.appendTo}' as it does not exist in document`;
         appendToElement.append(forProgressContainer);
 
-        let bar = forProgressContainer.querySelector('div.bar') as HTMLElement;
+        const bar = forProgressContainer.querySelector('div.bar') as HTMLElement;
 
         return { forProgressContainer, bar };
 
@@ -266,7 +266,7 @@ class ForProgress {
 
             }
 
-            let nextPercent = this.currentPercent + this.getRandomPercent();
+            const nextPercent = this.currentPercent + this.getRandomPercent();
             if (nextPercent <= 99.5) this.setPercent(nextPercent);
 
         }, this.settings.autoIncrementSpeed) as unknown as number;
@@ -282,7 +282,7 @@ class ForProgress {
 
     private updateSettings(customSettings: Settings) {
 
-        for (let [key, value] of Object.entries(customSettings)) {
+        for (const [key, value] of Object.entries(customSettings)) {
 
             (this.settings as any)[key] = value;
 
@@ -298,7 +298,7 @@ class ForProgress {
 
         if (this.settings.useCustomCss) return;
 
-        let styleElement = document.createElement('style');
+        const styleElement = document.createElement('style');
         styleElement.textContent = css;
         document.head.append(styleElement);
 
@@ -306,7 +306,7 @@ class ForProgress {
 
     private createElementWithClassName(elementType: string, className: string): HTMLElement {
 
-        let element = document.createElement(elementType);
+        const element = document.createElement(elementType);
         element.className = className;
         return element;
 
